@@ -34,10 +34,11 @@ public class AppTest
     {
         App.main(null);
         try {
-            assertEquals("Hello World!" + System.getProperty("line.separator"), outContent.toString());
-        } catch (AssertionError e) {
-            fail("\"message\" is not \"Hello World!\"");
-        }
+           throwAssertionError();
+           Assert.fail("Expected an AssertionError!"); // Compliant, we made sure to test that the correct error is raised
+         } catch (AssertionError e) {
+           Assert.assertThat(e.getMessage(), is("My assertion error"));
+         }
     }
 
     @After
